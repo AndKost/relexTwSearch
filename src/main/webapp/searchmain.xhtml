@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:c="http://java.sun.com/jstl/core"
+>
+ <h:outputStylesheet library="css" name="style.css"  />
+ 
+ 
+<h:head>
+<title>Search service in Twitter by hashtag</title>
+</h:head>
+<h:body>
+     <h2>Twitter search by hashtag</h2>
+       
+     <h:form> 
+     		Enter your hashtag without '#':
+	      <h:inputText id="hashtag" value="#{mainBean.hashtag}" > </h:inputText>
+	      <h:commandButton value="Search">
+    			<f:ajax execute="hashtag" event="click" listener="#{mainBean.twSearchResult}" render="myDataTable" />
+		</h:commandButton>
+		<p>Show first 25 tweets</p>
+	</h:form> 
+	
+    <h:dataTable id="myDataTable" value="#{mainBean.twsResult}" var="tweet">
+        <h:column>
+            #{tweet.author}
+        </h:column>
+        <h:column>
+            #{tweet.time}
+        </h:column>
+        <h:column>
+            #{tweet.text}
+        </h:column>
+   	 </h:dataTable>
+      
+      
+</h:body>
+</html>
